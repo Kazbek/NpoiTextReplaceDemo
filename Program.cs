@@ -28,16 +28,8 @@ namespace NpoiTextReplaceDemo
                 fileStream.Close();
             }
 
-            foreach (var p in doc.Paragraphs)
-            {
-                if (p.Text == null)
-                    continue;
-
-                foreach (var pair in replacers)
-                    if (p.Text.Contains(pair.Key))
-                        p.ReplaceText(pair.Key, pair.Value);
-
-            }
+            foreach (var pair in replacers)
+                    doc.FindAndReplaceText(pair.Key, pair.Value);
 
             doc.Write(stream);
 
